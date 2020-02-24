@@ -91,9 +91,18 @@ Le corps de la trame (Frame body) contient, entre autres, un champ de deux octet
  
 a) Utiliser la fonction de déauthentification de la suite aircrack, capturer les échanges et identifier le Reason code et son interpretation.
 
+```
+$ sudo airmon-ng start wlp3s0 --channel 40
+$ sudo aireplay-ng -0 10 -a dc:a5:f4:61:21:df -c f4:0f:24:3b:9f:ee wlp3s0mon -D (HEIG-VD)
+```
+
 __Question__ : quel code est utilisé par aircrack pour déauthentifier un client 802.11. Quelle est son interpretation ?
 
+Le code utilisé est le 7 `Class 3 frame received from nonassociated station`. 
+
 __Question__ : A l'aide d'un filtre d'affichage, essayer de trouver d'autres trames de déauthentification dans votre capture. Avez-vous en trouvé d'autres ? Si oui, quel code contient-elle et quelle est son interpretation ?
+
+Non, nous avons dû utiliser une réseau tiers isolé pour réussir l'opération et bien la voir. Le réseau de l'école étant bombardé par les étudiants.
 
 b) Développer un script en Python/Scapy capable de générer et envoyer des trames de déauthentification. Le script donne le choix entre des Reason codes différents (liste ci-après) et doit pouvoir déduire si le message doit être envoyé à la STA ou à l'AP :
 * 1 - Unspecified
