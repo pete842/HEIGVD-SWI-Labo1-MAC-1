@@ -112,13 +112,27 @@ b) Développer un script en Python/Scapy capable de générer et envoyer des tra
 
 __Question__ : quels codes/raisons justifient l'envoie de la trame à la STA cible et pourquoi ?
 
+* 1 - Unspecified doit logiquement envoyé à l'STA pour lui faire comprendre que l'AP a eu un problème inconnue
+* 4 - Disassociated due to inactivity, pour signifie au client qu'il ne fait plus parti du réseau dû à son inactivité
+* 5 - Disassociated because AP is unable to handle all currently associated stations, est une réponse de l'AP en cas de surcharge de client
+
 __Question__ : quels codes/raisons justifient l'envoie de la trame à l'AP et pourquoi ?
+
+* 1 - Unspecified doit logiquement envoyé à l'AP pour lui faire comprendre que l'STA a eu un problème inconnue
+* 8 - Deauthenticated because sending STA is leaving BSS, Le client se déconnecte en le disant à l'AP
 
 __Question__ : Comment essayer de déauthentifier toutes les STA ?
 
+On peut envoyé un paquet en broadcast ce qui déconnectera tout les utilisateurs
+
 __Question__ : Quelle est la différence entre le code 3 et le code 8 de la liste ?
 
+Dans le cas du code 3, on parle de context iBSS ou ESS.
+Il est nécessaire donc d'utiliser la bonne trame dans le bon context.
+
 __Question__ : Expliquer l'effet de cette attaque sur la cible
+
+L'effet est le même entre les deux codes toutefois, la STA peut faire la différence et comprendre que le paquet reçu n'a pas de sens dans ce context et la drop et/ou lever des alertes.
 
 ### 2. Fake channel evil tween attack
 a)	Développer un script en Python/Scapy avec les fonctionnalités suivantes :
