@@ -123,7 +123,7 @@ __Question__ : quels codes/raisons justifient l'envoie de la trame à l'AP et po
 
 __Question__ : Comment essayer de déauthentifier toutes les STA ?
 
-On peut envoyé un paquet en broadcast ce qui déconnectera tout les utilisateurs
+On peut envoyé un paquet en broadcast ce qui déconnectera tous les utilisateurs
 
 __Question__ : Quelle est la différence entre le code 3 et le code 8 de la liste ?
 
@@ -143,6 +143,12 @@ a)	Développer un script en Python/Scapy avec les fonctionnalités suivantes :
 * Générer un beacon concurrent annonçant un réseau sur un canal différent se trouvant à 6 canaux de séparation du réseau original
 
 __Question__ : Expliquer l'effet de cette attaque sur la cible
+
+En l'état rien, le client ne se connectera pas automatiquement sur notre fausse AP,
+hormis la fausse AP sera simplement potentiellement visible par l'utilisateur.
+Si nous souhaitons que l'utilisateur se connect sur notre fausse AP, il serait nécessaire de déconnecter l'utilisateur de son AP actuel ET de fournir une AP avec une puissance supérieur pour avoir une chance que l'utilisateur viennent à se connecter chez nous.
+
+Pour permettre l'utilisation
 
 
 ### 3. SSID flood attack
