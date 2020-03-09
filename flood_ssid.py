@@ -9,7 +9,7 @@ from scapy.all import *
 list_ssid = []
 
 if len(sys.argv) < 2: # Demand number of fake SSID
-    nbSSID = int(input("Specify number of fake SSID to generate"))
+    nbSSID = int(input("Specify number of fake SSID to generate : "))
 
     for i in range(nbSSID):
         list_ssid.append(str(uuid.uuid4()))

@@ -134,6 +134,63 @@ __Question__ : Expliquer l'effet de cette attaque sur la cible
 
 L'effet est le même entre les deux codes toutefois, la STA peut faire la différence et comprendre que le paquet reçu n'a pas de sens dans ce context et la drop et/ou lever des alertes.
 
+#### Usage
+
+````
+Target MAC: f4:0f:24:3b:9f:ee
+BSSID: 5c:5a:c7:46:84:4f
+Reason (1, 4, 5 or 8): 1
+#Packets: 100
+..
+Sent 2 packets.
+..
+Sent 2 packets.
+..
+Sent 2 packets.
+..
+Sent 2 packets.
+..
+Sent 2 packets.
+..
+Sent 2 packets.
+...
+````
+
+````
+ping 8.8.8.8                                                                                                                                                      ✔  anaconda3   13:34:49 
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=52 time=33.339 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=52 time=8.009 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=52 time=170.589 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=52 time=6.852 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=52 time=8.121 ms
+64 bytes from 8.8.8.8: icmp_seq=5 ttl=52 time=55.207 ms
+64 bytes from 8.8.8.8: icmp_seq=6 ttl=52 time=9.300 ms
+64 bytes from 8.8.8.8: icmp_seq=7 ttl=52 time=217.627 ms
+64 bytes from 8.8.8.8: icmp_seq=8 ttl=52 time=7.015 ms
+64 bytes from 8.8.8.8: icmp_seq=9 ttl=52 time=6.575 ms
+64 bytes from 8.8.8.8: icmp_seq=10 ttl=52 time=7.743 ms
+64 bytes from 8.8.8.8: icmp_seq=11 ttl=52 time=88.799 ms
+64 bytes from 8.8.8.8: icmp_seq=12 ttl=52 time=304.977 ms
+64 bytes from 8.8.8.8: icmp_seq=13 ttl=52 time=8.558 ms
+64 bytes from 8.8.8.8: icmp_seq=14 ttl=52 time=46.627 ms
+64 bytes from 8.8.8.8: icmp_seq=15 ttl=52 time=69.296 ms
+64 bytes from 8.8.8.8: icmp_seq=16 ttl=52 time=137.508 ms
+64 bytes from 8.8.8.8: icmp_seq=17 ttl=52 time=379.212 ms
+64 bytes from 8.8.8.8: icmp_seq=18 ttl=52 time=6.778 ms
+Request timeout for icmp_seq 19
+Request timeout for icmp_seq 20
+Request timeout for icmp_seq 21
+Request timeout for icmp_seq 22
+Request timeout for icmp_seq 23
+Request timeout for icmp_seq 24
+Request timeout for icmp_seq 25
+Request timeout for icmp_seq 26
+Request timeout for icmp_seq 27
+Request timeout for icmp_seq 28
+...
+````
+
 ### 2. Fake channel evil tween attack
 a)	Développer un script en Python/Scapy avec les fonctionnalités suivantes :
 
@@ -149,12 +206,61 @@ En revanche, la fausse AP sera simplement visible par l'utilisateur au même tit
 Si nous souhaitons que l'utilisateur se connecte sur notre fausse AP, il sera nécessaire de le déconnecter de son AP actuel ET de lui fournir une AP avec une puissance supérieur afin d'avoir une chance de voir l'utilisateur se connecter chez nous.
 Ensuite, il devient possible d'exploiter cet abus de confiance en demandant par exemple à cet utilisateur de saisir la véritable clé (par le biais d'une page internet forgé à cet effet) ou profiter de la position de MitM ainsi établie.
 
-Pour permettre l'utilisation
+#### Usage
+
+````bash
+sudo ./fceta.py
+Press CTRL+C whenever you're happy with the SSIDs list.
+=== Target #1 ===
+ssid: S60
+bssid: a6:14:fb:6d:14:50
+channel: 2
+intensity: -46 dBm
+=== Target #2 ===
+ssid: MYDEVICES
+bssid: dc:a5:f4:4d:11:36
+channel: 1
+intensity: -82 dBm
+=== Target #3 ===
+ssid: eduroam
+bssid: dc:a5:f4:8d:5b:31
+channel: 1
+intensity: -80 dBm
+=== Target #4 ===
+ssid: MYDEVICES
+bssid: dc:a5:f4:60:bf:56
+channel: 1
+intensity: -84 dBm
+=== Target #5 ===
+ssid: eduroam
+bssid: dc:a5:f4:60:bf:51
+channel: 1
+intensity: -83 dBm
+Please select the target (1-5): 1
+Sending a fake beacons with SSID b'S60', channel 8 (real channel is 2) (10/second)
+..................................................................................................................................................................
+Sent 1059 packets.
+````
+
+![S60_1](./images/S60_1.png)
 
 
 ### 3. SSID flood attack
 
 Développer un script en Python/Scapy capable d'inonder la salle avec des SSID dont le nom correspond à une liste contenue dans un fichier text fournit par un utilisateur. Si l'utilisateur ne possède pas une liste, il peut spécifier le nombre d'AP à générer. Dans ce cas, les SSID seront générés de manière aléatoire.
+
+#### Usage
+
+````
+sudo ./flood_ssid.py
+Specify number of fake SSID to generate : 50
+.
+Sent 1 packets.
+````
+
+![UUID_flood](./images/uuid_flood.png)
+
+Vous pouvez aussi lui enovoyé le nom d'un fichier en parametre qui sera lu ligne par ligne soit un SSID par ligne.
 
 ## Livrables
 
