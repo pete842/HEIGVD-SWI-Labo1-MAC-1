@@ -66,9 +66,9 @@ Le corps de la trame (Frame body) contient, entre autres, un champ de deux octet
 | 11   | Disassociated because the information in the Supported Channels element is unacceptable                                                               |
 | 12   | Reserved                                                                                                                                              |
 | 13   | Invalid information element, i.e., an information element defined in this standard for which the content does not meet the specifications in Clause 7 |
-| 14   | Message integrity code (MIC) failure                                                                                                                                              |
-| 15   | 4-Way Handshake timeout                                                                                                                                              |
-| 16   | Group Key Handshake timeout                                                                                                                                              |
+| 14   | Message integrity code (MIC) failure                                                                                                                  |
+| 15   | 4-Way Handshake timeout                                                                                                                               |
+| 16   | Group Key Handshake timeout                                                                                                                           |
 | 17   | Information element in 4-Way Handshake different from (Re)Association Request/Probe Response/Beacon frame                                                                                                                                              |
 | 18   | Invalid group cipher                                                                                                                                              |
 | 19   | Invalid pairwise cipher                                                                                                                                              |
@@ -144,9 +144,10 @@ a)	Développer un script en Python/Scapy avec les fonctionnalités suivantes :
 
 __Question__ : Expliquer l'effet de cette attaque sur la cible
 
-En l'état rien, le client ne se connectera pas automatiquement sur notre fausse AP,
-hormis la fausse AP sera simplement potentiellement visible par l'utilisateur.
-Si nous souhaitons que l'utilisateur se connect sur notre fausse AP, il serait nécessaire de déconnecter l'utilisateur de son AP actuel ET de fournir une AP avec une puissance supérieur pour avoir une chance que l'utilisateur viennent à se connecter chez nous.
+En l'état : rien de concret, le client ne se connectera pas automatiquement sur notre fausse AP.
+En revanche, la fausse AP sera simplement visible par l'utilisateur au même titre que l'AP légitime.
+Si nous souhaitons que l'utilisateur se connecte sur notre fausse AP, il sera nécessaire de le déconnecter de son AP actuel ET de lui fournir une AP avec une puissance supérieur afin d'avoir une chance de voir l'utilisateur se connecter chez nous.
+Ensuite, il devient possible d'exploiter cet abus de confiance en demandant par exemple à cet utilisateur de saisir la véritable clé (par le biais d'une page internet forgé à cet effet) ou profiter de la position de MitM ainsi établie.
 
 Pour permettre l'utilisation
 
